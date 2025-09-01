@@ -10,7 +10,7 @@ def fileParser(filename) -> list[list[int]]:
 
     return list_of_lists
 
-#Check if a row is monotonic (either entirely non-increasing or non-decreasing)
+#Check if a row is monotonic (either strictly ascending or descending)
 def rowMonotone(row: list[int]) -> bool:
     #Discard invalid case where two initial elements are equal
     if row[1] == row[0]:
