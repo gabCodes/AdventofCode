@@ -12,6 +12,8 @@ def fileParser(filename) -> list[list[int]]:
 
 #Check if a row is monotonic (either strictly ascending or descending)
 def rowMonotone(row: list[int]) -> bool:
+    assert len(row) > 1, "Row must have at least two elements to determine monotonicity"
+
     #Discard invalid case where two initial elements are equal
     if row[1] == row[0]:
         return False
