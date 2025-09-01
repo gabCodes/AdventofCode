@@ -10,34 +10,21 @@ def fileParser(filename) -> list[list[int]]:
 
     return list_of_lists
 
-#Check if a row is monotonic (either strictly ascending or descending)
-def rowMonotone(row: list[int]) -> bool:
+#Check if changes monotonically and checks the difference between each adjacent number is >= 1 and <= 3
+def rowChecker(row: list[int]) -> bool:
     assert len(row) > 1, "Row must have at least two elements to determine monotonicity"
 
     #Discard invalid case where two initial elements are equal
     if row[1] == row[0]:
         return False
     
-    ascending = row[1] > row[0]
+    ascending = int(row[1] > row[0])
 
     for i in range(len(row) - 1):
-        if ascending and row[i+1] > row[i]:
-            continue
-
-        elif not ascending and row[i+1] < row[i]:
-            continue
-
-        else:
-            return False
-        
-    return True
-
-#Check if the difference between each adjacent number is >= 1 and <= 3
-def rowDiff(row: list[int]) -> bool:
-    for i in range(len(row) - 1):
+        check = int(row[i+1] > row[i])
         diff = abs(int(row[i+1]) - int(row[i]))
 
-        if diff >= 1 and diff <= 3:
+        if diff >= 1 and diff <= 3 and check ^ ascending == 0:
             continue
         
         else:
@@ -49,7 +36,7 @@ def rowDiff(row: list[int]) -> bool:
 def validChecker(l1: list[list[str]]) -> int:
     count = 0
     for row in l1:
-        if rowMonotone(row) and rowDiff(row):
+        if rowChecker(row):
             count += 1
 
     return count
