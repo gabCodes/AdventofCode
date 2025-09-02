@@ -1,5 +1,6 @@
 import numpy as np
 
+#Read file and convert to list of lists
 def fileParser(filename: str) -> list[list[str]]:
     with open(filename, 'r') as file:
         lines = file.readlines()
@@ -74,12 +75,6 @@ def xChecker(arr) -> int:
                     count += dirChecker(arr, j, i, "NW")
         
     return count
-
-                
-
-
-
-
 
 if __name__ == "__main__":
     #Read file
